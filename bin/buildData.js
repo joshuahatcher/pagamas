@@ -1,6 +1,11 @@
+/**
+ * @file Creates a JSON file of dummy data from a list of names for use in demoing this plugin
+ * @author Joshua Hatcher
+ */
+
 const { readFileSync, writeFile } = require('fs')
 
-let data = readFileSync('bin/names.txt')
+const data = readFileSync('bin/names.txt')
 .toString()
 .split('\n')
 .map(function(name) {
@@ -10,19 +15,6 @@ let data = readFileSync('bin/names.txt')
   };
 });
 
-const args = require('yargs').argv;
-const chunk = args.chunk;
-
-if (chunk) {
-  let chunkedData = [];
-
-  for (let i = 0; i < data.length; i += chunk) {
-    chunkedData.push(data.slice(i, i + chunk));
-  }
-
-  data = chunkedData;
-}
-
 const stringifiedData = JSON.stringify(data);
 
-writeFile('data.json', stringifiedData);
+writeFile('bin/data.json', stringifiedData);
