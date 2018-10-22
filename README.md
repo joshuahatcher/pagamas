@@ -1,2 +1,2 @@
-# pajamas
+# pagamas
 Paginator plugin using React
